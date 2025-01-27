@@ -13,7 +13,7 @@ namespace CreditCardAllowedActions.Presentation
                 { 
                     var query = new GetAllowedActionsQuery(userId, cardNumber);
                     var result = await mediator.Send(query, ct);
-                    return Results.Ok(result); 
+                    return result != null ? Results.Ok(result) : Results.NotFound(); 
                 })
                 .WithName("GetCreditCardAllowedActions")
                 .WithOpenApi();
